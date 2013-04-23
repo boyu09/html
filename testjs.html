@@ -5,55 +5,16 @@
     <script type="text/javascript" src="http://new.wzdai.com/themes/soonmes_wzd/media/js/jquery.js"></script>
     <style type="text/css">
         *{ margin:0; padding:0;}
-        #aa ul li{ background: #ccc;border:1px solid #ccc; float: left; width:100px; height: 30px;}
-        #aa  ul li a{  display:block;}
-        #aa ul li.hover{ background: #fff; color:#999;}
-        #aa .navlist{ width:100px; height: 100px; display: none;}
-
-        .success{ width:248px; border:1px solid #e2e4e3; border-right:none;position:relative; margin-top:20px;}
-        .success .marginTop{ width:220px; height:140px; overflow:hidden; margin:10px auto;  *margin:0px auto 10px;position:relative; *top:10px;}
-        .success .marginTop ul{ width:220px;}
-        .success .marginTop ul li{ width:220px; height:80px; border-bottom:1px dashed #e2e4e3; position:relative; float: left;}
-        .success .marginTop ul li .sucimg{ width:55px; height:60px; position:absolute; top:9px; left:5px;}
-        .success .marginTop ul li dl{ width:160px; height:60px; position:absolute; top:9px; left:65px;}
-        .success .marginTop ul li dl dd{height:20px; line-height:20px; color:#666; overflow:hidden; white-space:nowrap }
-        .success .marginTop ul li dl dd a{height:20px; line-height:20px; color:#1e5fd4; white-space:nowrap }
-        .success .marginTop ul li dl dd a:hover{color:#f60; text-decoration:underline;}
-
-
-        .slidebox{ width:980px; margin: 0px auto 0; position: relative;}
-        .slide{ width:980px; height:245px; overflow:hidden; float: left;}
-        .slide ul li{ width:980px; height:295px; float:left;}
-        .slide ul li img{ width:980px; height:295px;}
-        .slide #flashnvanum{ position:absolute; bottom:3px; left:430px; z-index: 99;}
-        .slidebox .countbg{ position:absolute; bottom:0px; height: 18px; width:980px;left:0; opacity:0.7;filter:alpha(opacity=70);}
-        .slidebox .countbg2{}
-        .slide #flashnvanum span{ width:10px; height:10px; background:url(../bg/slideli.png) no-repeat; float:left; text-indent:-9999em; margin:0 7px;*display:inline;}
-        .slide #flashnvanum span.on{  background:url(../bg/slidelihover.png) no-repeat;}
-
-        .userleft{clear:both; width:300px;}
-        .userleft .userleft-title{ width:200px; height: 20px; line-height: 20px; color: #333; cursor:pointer}
-        .userleft span.hover{ background: #000; color: #fff;}
-        .togglediv ul{ border:1px solid #ccc; width:200px; display: none;}
-        .togglediv ul li{ height: 20px;}
-
-        .tabbox{ width:300px;}
-        .tabbox ul li{ width:100px; background: #ccc; color: #fff; height: 30px; line-height: 30px; float: left;}
-        .tabbox ul li.hover{background: #fff; color: #333; }
-        .tabbox .tab-content{ width:300px; height: 100px; display: none;}
-		
-		
-		.fade-slidebox{ width:100%; height:264px; position:relative;}
-		.fade-slidebox .fade-ul{ width:200px; margin:0 auto; margin-top:200px; position:relative;}
-		.fade-slidebox .fade-ul li{ width:20px; float:left;margin-right:10px; border:1px solid #000; background:#f60; color:#fff; cursor:pointer;}
-		.fade-slidebox .fade-ul li.hover{ border:1px solid #f00; background:#ccc; color:#f60; cursor:pointer;}
-		.fade-slidebox .fade-content{ position:absolute; width:100%; height:264px;}
-		.fade-slidebox .screen1{ width:100%; height:264px; background:url(http://www.rongyidai.com/themes/soonmes_rydai/media/bg/p-banner1.jpg) no-repeat center 0;}
-		.fade-slidebox .screen2{ width:100%; height:264px; background:url(http://www.rongyidai.com/themes/soonmes_rydai/media/bg/p-banner2.jpg) no-repeat center 0;}
-		.fade-slidebox .screen3{ width:100%; height:264px; background:url(http://www.rongyidai.com/themes/soonmes_rydai/media/bg/p-banner3.jpg) no-repeat center 0;}
+		ul li{ list-style:none;}		
     </style>
 </head>
 <body>
+<style>
+#aa ul li{ background: #ccc;border:1px solid #ccc; float: left; width:100px; height: 30px;}
+#aa  ul li a{  display:block;}
+#aa ul li.hover{ background: #fff; color:#999;}
+#aa .navlist{ width:100px; height: 100px; display: none;}
+</style>
 <div id="aa">
     <ul>
         <li><a href="#">jQuery</a>
@@ -128,7 +89,17 @@
 	$("#aa").nav({isTab:false});
        
 </script>
-
+<style>
+.success{ width:248px; border:1px solid #e2e4e3; border-right:none;position:relative; margin-top:20px;}
+.success .marginTop{ width:220px; height:140px; overflow:hidden; margin:10px auto;  *margin:0px auto 10px;position:relative; *top:10px;}
+.success .marginTop ul{ width:220px;}
+.success .marginTop ul li{ width:220px; height:80px; border-bottom:1px dashed #e2e4e3; position:relative; float: left;}
+.success .marginTop ul li .sucimg{ width:55px; height:60px; position:absolute; top:9px; left:5px;}
+.success .marginTop ul li dl{ width:160px; height:60px; position:absolute; top:9px; left:65px;}
+.success .marginTop ul li dl dd{height:20px; line-height:20px; color:#666; overflow:hidden; white-space:nowrap }
+.success .marginTop ul li dl dd a{height:20px; line-height:20px; color:#1e5fd4; white-space:nowrap }
+.success .marginTop ul li dl dd a:hover{color:#f60; text-decoration:underline;}
+</style>
 <div class="success">
     <div class="marginTop">
     <ul>
@@ -199,6 +170,17 @@
 	 $(".success").slideFn({isTop:true,slideTimer:"2000"});
         
 </script>
+<style>
+.slidebox{ width:980px; margin: 0px auto 0; position: relative;}
+.slide{ width:980px; height:245px; overflow:hidden; float: left;}
+.slide ul li{ width:980px; height:295px; float:left;}
+.slide ul li img{ width:980px; height:295px;}
+.slide #flashnvanum{ position:absolute; bottom:3px; left:430px; z-index: 99;}
+.slidebox .countbg{ position:absolute; bottom:0px; height: 18px; width:980px;left:0; opacity:0.7;filter:alpha(opacity=70);}
+.slidebox .countbg2{}
+.slide #flashnvanum span{ width:10px; height:10px; background:url(../bg/slideli.png) no-repeat; float:left; text-indent:-9999em; margin:0 7px;*display:inline;}
+.slide #flashnvanum span.on{  background:url(../bg/slidelihover.png) no-repeat;}
+</style>
 <div class="slide" style="height: 295px; width: 980px; overflow: hidden; position: relative; ">
     <ul>
         <li style="float: left; "><a href=""><img src="http://www.talentinvest.cn/data/upfiles/images/2013-04/08/1_scrollpic_13654056392.jpg" alt=""><div class="slide-txt"></div></a></li>
@@ -303,6 +285,13 @@
 	$(".slide").flashSlider({height:295,speed:1000,easing:"",width:980});
         
 </script>
+<style>
+.userleft{clear:both; width:300px;}
+.userleft .userleft-title{ width:200px; height: 20px; line-height: 20px; color: #333; cursor:pointer}
+.userleft span.hover{ background: #000; color: #fff;}
+.togglediv ul{ border:1px solid #ccc; width:200px; display: none;}
+.togglediv ul li{ height: 20px;}
+</style>
 <div class="togglenav">
     <div class="togglediv userleft">
         <span class="toggle-title userleft-title">我是第一个</span>
@@ -409,6 +398,12 @@
 	$(".togglenav").toggleNav({allShow:false});
         
 </script>
+<style>
+.tabbox{ width:300px;}
+.tabbox ul li{ width:100px; background: #ccc; color: #fff; height: 30px; line-height: 30px; float: left;}
+.tabbox ul li.hover{background: #fff; color: #333; }
+.tabbox .tab-content{ width:300px; height: 100px; display: none;}
+</style>
 <div class="tabbox">
     <ul>
         <li>
@@ -484,6 +479,17 @@
 	$(".tabbox").tabChange({isHover:true});
 		
 </script>
+
+<style>
+.fade-slidebox{ width:100%; height:264px; position:relative;}
+.fade-slidebox .fade-ul{ width:200px; margin:0 auto; margin-top:200px; position:relative;}
+.fade-slidebox .fade-ul li{ width:20px; float:left;margin-right:10px; border:1px solid #000; background:#f60; color:#fff; cursor:pointer;}
+.fade-slidebox .fade-ul li.hover{ border:1px solid #f00; background:#ccc; color:#f60; cursor:pointer;}
+.fade-slidebox .fade-content{ position:absolute; width:100%; height:264px;}
+.fade-slidebox .screen1{ width:100%; height:264px; background:url(http://www.rongyidai.com/themes/soonmes_rydai/media/bg/p-banner1.jpg) no-repeat center 0;}
+.fade-slidebox .screen2{ width:100%; height:264px; background:url(http://www.rongyidai.com/themes/soonmes_rydai/media/bg/p-banner2.jpg) no-repeat center 0;}
+.fade-slidebox .screen3{ width:100%; height:264px; background:url(http://www.rongyidai.com/themes/soonmes_rydai/media/bg/p-banner3.jpg) no-repeat center 0;}
+</style>
 <div class="fade-slidebox">
     <div class="fade-content">
     	<div class="screen1"></div>
@@ -537,16 +543,9 @@
 				}
 			});
 		})(jQuery);
-		$(".fade-slidebox").fadeSlide();
+		$(".fade-slidebox").fadeSlide();//全屏淡入淡出渐变
 </script>
 
 </body>
 
 </html>
-
-
-<script type="text/javascript">
-    $(function(){
-        
-    })
-</script>
