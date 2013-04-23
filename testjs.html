@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html><head>
+    <title></title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="http://new.wzdai.com/themes/soonmes_wzd/media/js/jquery.js"></script>
+    <style type="text/css">
+        *{ margin:0; padding:0;}
+        #aa ul li{ background: #ccc;border:1px solid #ccc; float: left; width:100px; height: 30px;}
+        #aa  ul li a{  display:block;}
+        #aa ul li.hover{ background: #fff; color:#999;}
+        #aa .navlist{ width:100px; height: 100px; display: none;}
+
+        .success{ width:248px; border:1px solid #e2e4e3; border-right:none;position:relative; margin-top:20px;}
+        .success .marginTop{ width:220px; height:140px; overflow:hidden; margin:10px auto;  *margin:0px auto 10px;position:relative; *top:10px;}
+        .success .marginTop ul{ width:220px;}
+        .success .marginTop ul li{ width:220px; height:80px; border-bottom:1px dashed #e2e4e3; position:relative; float: left;}
+        .success .marginTop ul li .sucimg{ width:55px; height:60px; position:absolute; top:9px; left:5px;}
+        .success .marginTop ul li dl{ width:160px; height:60px; position:absolute; top:9px; left:65px;}
+        .success .marginTop ul li dl dd{height:20px; line-height:20px; color:#666; overflow:hidden; white-space:nowrap }
+        .success .marginTop ul li dl dd a{height:20px; line-height:20px; color:#1e5fd4; white-space:nowrap }
+        .success .marginTop ul li dl dd a:hover{color:#f60; text-decoration:underline;}
+
+
+        .slidebox{ width:980px; margin: 0px auto 0; position: relative;}
+        .slide{ width:980px; height:245px; overflow:hidden; float: left;}
+        .slide ul li{ width:980px; height:295px; float:left;}
+        .slide ul li img{ width:980px; height:295px;}
+        .slide #flashnvanum{ position:absolute; bottom:3px; left:430px; z-index: 99;}
+        .slidebox .countbg{ position:absolute; bottom:0px; height: 18px; width:980px;left:0; opacity:0.7;filter:alpha(opacity=70);}
+        .slidebox .countbg2{}
+        .slide #flashnvanum span{ width:10px; height:10px; background:url(../bg/slideli.png) no-repeat; float:left; text-indent:-9999em; margin:0 7px;*display:inline;}
+        .slide #flashnvanum span.on{  background:url(../bg/slidelihover.png) no-repeat;}
+
+        .userleft{clear:both; width:300px;}
+        .userleft .userleft-title{ width:200px; height: 20px; line-height: 20px; color: #333; cursor:pointer}
+        .userleft span.hover{ background: #000; color: #fff;}
+        .togglediv ul{ border:1px solid #ccc; width:200px; display: none;}
+        .togglediv ul li{ height: 20px;}
+
+        .tabbox{ width:300px;}
+        .tabbox ul li{ width:100px; background: #ccc; color: #fff; height: 30px; line-height: 30px; float: left;}
+        .tabbox ul li.hover{background: #fff; color: #333; }
+        .tabbox .tab-content{ width:300px; height: 100px; display: none;}
+		
+		
+		.fade-slidebox{ width:100%; height:264px; position:relative;}
+		.fade-slidebox .fade-ul{ width:200px; margin:0 auto; margin-top:200px; position:relative;}
+		.fade-slidebox .fade-ul li{ width:20px; float:left;margin-right:10px; border:1px solid #000; background:#f60; color:#fff; cursor:pointer;}
+		.fade-slidebox .fade-ul li.hover{ border:1px solid #f00; background:#ccc; color:#f60; cursor:pointer;}
+		.fade-slidebox .fade-content{ position:absolute; width:100%; height:264px;}
+		.fade-slidebox .screen1{ width:100%; height:264px; background:url(http://www.rongyidai.com/themes/soonmes_rydai/media/bg/p-banner1.jpg) no-repeat center 0;}
+		.fade-slidebox .screen2{ width:100%; height:264px; background:url(http://www.rongyidai.com/themes/soonmes_rydai/media/bg/p-banner2.jpg) no-repeat center 0;}
+		.fade-slidebox .screen3{ width:100%; height:264px; background:url(http://www.rongyidai.com/themes/soonmes_rydai/media/bg/p-banner3.jpg) no-repeat center 0;}
+    </style>
+</head>
+<body>
+<div id="aa">
+    <ul>
+        <li><a href="#">jQuery</a>
+            <div class="navlist">
+                <a href="#">1</a>
+                <a href="#">1</a>
+                <a href="#">1</a>
+                <a href="#">1</a>
+            </div>
+
+        </li>
+        <li class="hover2"><a href="#">Asp.net</a>
+            <div class="navlist">
+                <a href="#">1</a>
+                <a href="#">1</a>
+                <a href="#">1</a>
+                <a href="#">1</a>
+            </div>
+        </li>
+
+    </ul>
+</div>
+<div style="clear:both"></div>
+
+<script>
+(function($){
+        $.fn.extend({
+            nav:function(options){
+                var defaults = {
+                    isTab: true
+                };
+                var options = $.extend(defaults,options);
+                 this.each(function(){
+                    var o = options;
+                    var obj = $(this);
+                    var items = $("ul li",obj);
+                    var oDiv = $(".navlist",obj);
+                     if(o.isTab){
+                         oDiv.eq(0).show(); // tab切换可以使用这句;
+                     }
+                     var showDiv = function(){
+                         items.each(function(i){
+                            if($(items[i]).hasClass("hover2"))
+                            {
+                                $(items[i]).addClass("hover").siblings().removeClass("hover");
+                                oDiv.hide();
+                                $(oDiv[i]).show();
+                            }
+                         });
+                     };
+                     if(o.isTab==true){
+                        showDiv();
+                     }
+                    items.hover(function(){
+                        var index = items.index(this);
+                        $(items[index]).addClass("hover").siblings().removeClass("hover");
+                        $(oDiv).hide();
+                        $(oDiv[index]).show();
+                    });
+                     $(this).mouseleave(function(){
+                        if(o.isTab==true){
+                            showDiv();
+                        }else{
+                            oDiv.hide();
+                        }
+                    });
+
+                })
+            }
+        })
+    })(jQuery);//导航
+	$("#aa").nav({isTab:false});
+       
+</script>
+
+<div class="success">
+    <div class="marginTop">
+    <ul>
+        <li>
+            地方1
+        </li>
+        <li>
+            地方2
+        </li>
+        <li>
+            地方3
+        </li>
+        <li>
+            地方4
+        </li>
+        <li>
+            地方5
+        </li>
+    </ul>
+</div>
+</div>
+<script>
+(function($){
+        $.fn.extend({
+            slideFn:function(options){
+                var defaults = {
+                    isTop:true,
+                    slideTimer:"3000"
+                };
+                var options = $.extend(defaults,options);
+                this.each(function(){
+                    var o = options;
+                    var obj = $(this);
+                    var oUl = obj.find("ul:first");
+                    var oLi = $("li",oUl);
+                    console.log(this)
+                    var Timer;
+                    obj.hover(function(){
+                        clearInterval(Timer);
+                    },function(){
+                        Timer = setInterval(function(){
+                            if(o.isTop==true){
+                                slideTop(oUl);
+                            }else{
+                                slideLeft(oUl);
+                            }
+                        }, o.slideTimer )
+                    }).trigger("mouseleave");
+
+                    var slideTop = function(box){
+                        var oLiHeight = box.find("li:first").height();
+                        box.animate({"marginTop":-oLiHeight+"px"},800,function(){
+                            box.css("marginTop",0).find("li:first").appendTo(box);
+                        })
+                    };//上滚
+                    var slideLeft = function(box2){
+                        box2.css("width",((oLi.width())*(oLi.length))+"px");
+                        var oLiWidth = box2.find("li:first").width();
+                        box2.animate({"marginLeft":-oLiWidth+"px"},800,function(){
+                            box2.css("marginLeft",0).find("li:first").appendTo(box2);
+                        })
+                    };//左滚
+                })
+            }
+
+        })
+    })(jQuery);//上下滚动
+	 $(".success").slideFn({isTop:true,slideTimer:"2000"});
+        
+</script>
+<div class="slide" style="height: 295px; width: 980px; overflow: hidden; position: relative; ">
+    <ul>
+        <li style="float: left; "><a href=""><img src="http://www.talentinvest.cn/data/upfiles/images/2013-04/08/1_scrollpic_13654056392.jpg" alt=""><div class="slide-txt"></div></a></li>
+        <li style="float: left; "><a href=""><img src="http://www.talentinvest.cn/data/upfiles/images/2013-04/08/1_scrollpic_13654056652.jpg" alt=""><div class="slide-txt"></div></a></li>
+        <li style="float: left; "><a href=""><img src="http://www.talentinvest.cn/data/upfiles/images/2013-04/09/1_scrollpic_13654999059.jpg" alt=""><div class="slide-txt"></div></a></li>
+        <li style="float: left; "><a href=""><img src="http://www.talentinvest.cn/data/upfiles/images/2013-04/08/1_scrollpic_13654056919.jpg" alt=""><div class="slide-txt"></div></a></li>
+        <li style="float: left; "><a href=""><img src="http://www.talentinvest.cn/data/upfiles/images/2013-04/08/1_scrollpic_13654057552.jpg" alt=""><div class="slide-txt"></div></a></li>
+    </ul>
+</div>
+<script>
+ (function(jQuery) {
+        jQuery.fn.flashSlider = function(options) {
+            var options = jQuery.extend({}, jQuery.fn.flashSlider.defaults, options);
+            this.each(function() {
+                var obj = jQuery(this);
+                var curr = 1; //当前索引
+                var jQueryimg = obj.find("img");
+                var s = jQueryimg.length;
+                var w = jQueryimg.eq(0).width();
+                var h = jQueryimg.eq(0).height();
+
+                var jQueryflashelement = jQuery("ul", obj);
+                options.height == 0 ? obj.height(h) : obj.height(options.height);
+                options.width == 0 ? obj.width(w) : obj.width(options.width);
+                obj.css("overflow", "hidden");
+                obj.css("position", "relative");
+                jQueryflashelement.css('width', s * w);
+                if (!options.vertical) {
+                    jQuery("li", obj).css('float', 'left')
+                }
+                else {
+                    jQueryimg.css('display', 'block')
+                };
+                if (options.controlsShow) {
+                    var navbtnhtml = '<div id="flashnvanum"><div class="numbox">';
+                    for (var i = 0; i < s; i++) {
+                        navbtnhtml += '<span>' + (i + 1) + '</span>';
+                    }
+                    navbtnhtml += '</div></div>';
+                    obj.append(navbtnhtml);
+                    obj.find("#flashnvanum span").hover(function() {
+                        var num = jQuery(this).html();
+                        flash(num, true);
+                    }, function() {
+                        timeout = setTimeout(function() {
+                            flash((curr / 1 + 1), false);
+                        }, options.pause / 4);
+                    });
+                };
+                function setcurrnum(index) {
+                    obj.find("#flashnvanum span").eq(index).addClass('on').siblings().removeClass('on');
+                }
+                function flash(index, clicked) {
+                    jQueryflashelement.stop();
+                    var next = index == s ? 1 : index + 1;
+                    curr = index - 1;
+                    setcurrnum((index - 1));
+                    if (!options.vertical) {
+                        p = ((index - 1) * w * -1);
+                        jQueryflashelement.animate(
+                                { marginLeft: p },
+                                options.speed, options.easing
+                        );
+                    } else {
+                        p = ((index - 1) * h * -1);
+                        jQueryflashelement.animate(
+                                { marginTop: p },
+                                options.speed, options.easing
+                        );
+                    };
+                    if (clicked) {
+                        clearTimeout(timeout);
+                    };
+                    if (options.auto && !clicked) {
+                        timeout = setTimeout(function() {
+                            flash(next, false);
+                        }, options.speed + options.pause);
+                    };
+                }
+                var timeout;
+                //初始化
+                setcurrnum(0);
+                if (options.auto) {
+                    timeout = setTimeout(function() {
+                        flash(2, false);
+                    }, options.pause);
+                }
+            });
+        };
+        //默认值
+        jQuery.fn.flashSlider.defaults = {
+            controlsShow: true, //是否显示数字导航
+            vertical: false, //纵向还是横向滑动
+            speed: 800, //滑动速度
+            auto: true, //是否自定滑动
+            pause: 4000, //两次滑动暂停时间
+            easing: "swing", //easing效果，默认swing，更多效果需要easing插件支持
+            height: 205, //容器高度，不设置自动获取图片高度
+            width: 780//容器宽度，不设置自动获取图片宽度
+        }
+    })(jQuery);//轮播图片
+	$(".slide").flashSlider({height:295,speed:1000,easing:"",width:980});
+        
+</script>
+<div class="togglenav">
+    <div class="togglediv userleft">
+        <span class="toggle-title userleft-title">我是第一个</span>
+        <ul class="toggle-content">
+            <li>
+                嘿嘿
+            </li>
+            <li>
+                嘿嘿
+            </li>
+            <li>
+                嘿嘿
+            </li>
+        </ul>
+    </div>
+    <div class="togglediv userleft">
+        <span class="toggle-title userleft-title hover">我是第二个</span>
+        <ul class="toggle-content">
+            <li>
+                嘿嘿2
+            </li>
+            <li>
+                嘿嘿2
+            </li>
+            <li>
+                嘿嘿2
+            </li>
+        </ul>
+    </div>
+    <div class="togglediv userleft">
+        <span class="toggle-title userleft-title">我是第三个</span>
+        <ul class="toggle-content">
+            <li>
+                嘿嘿3
+            </li>
+            <li>
+                嘿嘿3
+            </li>
+            <li>
+                嘿嘿3
+            </li>
+        </ul>
+    </div>
+</div>
+<script>
+ (function($){
+        $.fn.extend({
+            toggleNav:function(options){
+                var defaults = {
+                    allShow:false
+                };
+                var options = $.extend(defaults,options);
+                this.each(function(){
+                    var o =options;
+                    var obj = $(this);
+                    var objDom = $(".togglediv", obj);
+                    if(o.allShow==true){
+                        $(".toggle-title",obj).addClass("hover")
+                    }
+                    var clickFn = function(box){
+                        var oLi = $(".toggle-title",box);
+                        var oDiv = $(".toggle-content",box);
+                        if(oLi.hasClass("hover"))
+                        {
+                            oDiv.show();
+                        }
+                        oLi.toggle(function(){
+                            if(oLi.hasClass("hover"))
+                            {
+                                if(!oDiv.is(":animated")){
+                                    $(this).removeClass("hover");
+                                    oDiv.slideUp();
+                                }
+                            }else{
+                                if(!oDiv.is(":animated")){
+                                    $(this).addClass("hover");
+                                    oDiv.slideDown();
+                                }
+                            }//有hover样式 则先隐藏，再显示
+                        },function(){
+                            if(!oLi.hasClass("hover"))
+                            {
+                                if(!oDiv.is(":animated")){
+                                    $(this).addClass("hover");
+                                    oDiv.slideDown();
+                                }
+                            }else{
+                                if(!oDiv.is(":animated")){
+                                    $(this).removeClass("hover");
+                                    oDiv.slideUp();
+                                }
+                            }//没有hover样式 则先显示，再隐藏
+
+                        })
+                    };
+                    objDom.each(function(i){
+                        clickFn($(this));
+                    });
+
+                })
+            }
+        })
+    })(jQuery);
+	$(".togglenav").toggleNav({allShow:false});
+        
+</script>
+<div class="tabbox">
+    <ul>
+        <li>
+            1
+        </li>
+        <li>
+            2
+        </li>
+        <li>
+            3
+        </li>
+    </ul>
+    <div class="tab-content">
+        1
+    </div>
+    <div class="tab-content">
+        11
+    </div>
+    <div class="tab-content">
+        111
+    </div>
+</div>
+<script>
+(function($){
+        $.fn.extend({
+            tabChange:function(options){
+                var defaults = {
+                    isClick:false,
+                    isHover:true
+                };
+                var options = $.extend(defaults,options);
+                this.each(function(){
+                    var o = options;
+                    var obj = $(this);
+                    var oLi = $("ul li",obj);
+                    var oDiv = $(".tab-content",obj);
+                    var Timer;
+                    var oLiClick = function(){
+                        oLi.eq(0).addClass("hover");
+                        oDiv.eq(0).show();
+                        oLi.click(function(){
+                            var index = oLi.index(this);
+                            $(oLi[index]).addClass("hover").siblings().removeClass("hover");
+                            oDiv.fadeOut().hide();
+                            $(oDiv[index]).fadeIn().show();
+                        })
+                    };
+
+                    var oLiHover = function(){
+                        oLi.eq(0).addClass("hover");
+                        oDiv.eq(0).show();
+                        oLi.mouseenter(function(){
+                                var index = oLi.index(this);
+                                $(oLi[index]).addClass("hover").siblings().removeClass("hover");
+                                oDiv.hide();
+                                $(oDiv[index]).show();
+                        });
+                    };
+
+                    if(o.isClick==true)
+                    {
+                        oLiClick();
+                    }
+                    else if(o.isHover==true)
+                    {
+                        oLiHover();
+                    }
+
+                })
+            }
+        });
+    })(jQuery);
+	$(".tabbox").tabChange({isHover:true});
+		
+</script>
+<div class="fade-slidebox">
+    <div class="fade-content">
+    	<div class="screen1"></div>
+    	<div class="screen2"></div>
+    	<div class="screen3"></div>
+    </div>
+    <ul class="fade-ul">
+    	<li class="hover">1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</div>
+<script type="text/javascript">
+    (function($){
+		$.fn.extend({
+			fadeSlide:function(options){
+				var defaults = {
+					slideTime:"3000"
+					};
+				var options = $.extend(defaults,options);
+				this.each(function(){
+					var o = options;
+					var obj = $(this);
+					var oLi = $(".fade-ul li",obj);
+					var oDiv = $(".fade-content div",obj);
+					var Timer;
+					var index = 1;
+					var leng = (oLi.length);
+					$(oDiv[0]).css({"display":"block"})
+					oLi.mouseover(function(){
+						index = oLi.index(this);
+						showImg(index);
+						}).eq(0).mouseover();
+					obj.hover(function(){
+							clearInterval(Timer);
+						},function(){
+							Timer = setInterval(function(){
+									showImg(index);
+									index++;
+									if(index==leng)
+									{
+										index=0;	
+									}
+								},o.slideTime)	
+						}).trigger("mouseleave");
+						function showImg(index){
+							$(oDiv[index]).fadeIn("slow").show().siblings().fadeOut().hide();
+							$(oLi).removeClass("hover").eq(index).addClass("hover");
+						}	
+					});
+				}
+			});
+		})(jQuery);
+		$(".fade-slidebox").fadeSlide();
+</script>
+
+</body>
+
+</html>
+
+
+<script type="text/javascript">
+    $(function(){
+        
+    })
+</script>
